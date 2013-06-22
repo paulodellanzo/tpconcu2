@@ -17,7 +17,7 @@ using namespace std;
 
 int main() {
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
-	Cola<PeticionConsulta> cola((char *)"/home/damian/file.txt",'a');
+	Cola<PeticionConsulta> cola((char *)"file.txt",'a');
 
 	PeticionConsulta peticion;
 	peticion.mtype = PETICION_CONSULTA;
