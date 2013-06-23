@@ -1,9 +1,3 @@
-/*
- * BaseDeDatos.cpp
- *
- *  Created on: 22/06/2013
- *      Author: damian
- */
 
 #include "BaseDeDatos.h"
 
@@ -41,6 +35,15 @@ Registro BaseDeDatos::consulta(char* nombre, char* direccion, char* telefono) {
 	}
 	Registro reg;
 	return reg;
+}
+
+void BaseDeDatos::mostrarRegistros() {
+	list<Registro>::iterator it;
+		for (it = this->registros.begin(); it != this->registros.end(); it++){
+			cout << (it->nombre) << endl;
+			cout << (it->direccion) << endl;
+			cout << (it->telefono) << endl;
+		}
 }
 
 BaseDeDatos::~BaseDeDatos() {

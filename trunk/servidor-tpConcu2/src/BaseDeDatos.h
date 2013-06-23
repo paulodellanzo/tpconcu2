@@ -1,9 +1,3 @@
-/*
- * BaseDeDatos.h
- *
- *  Created on: 22/06/2013
- *      Author: damian
- */
 
 #ifndef BASEDEDATOS_H_
 #define BASEDEDATOS_H_
@@ -21,6 +15,7 @@ public:
 	virtual ~BaseDeDatos();
 	int addRegistro(char* nombre, char* direccion, char* telefono);
 	Registro consulta(char* nombre, char* direccion, char* telefono);
+	void mostrarRegistros();
 
 private:
 	list<Registro> registros;
