@@ -40,6 +40,7 @@ int main() {
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 	Cola<Peticion> cola((char *)"/home/damian/file.txt",'a');
 	Peticion peticion;
+	BaseDeDatos* base = new BaseDeDatos();
 
 	// event handler para la senial SIGINT (-2)
 	SIGINT_Handler sigint_handler;
@@ -56,7 +57,7 @@ int main() {
 			case PETICION_CONSULTA:
 
 				RespuestaConsulta respConsulta;
-				respConsulta = consultar(peticion, base);
+				respConsulta = consultar(peticion,base);
 
 				break;
 			case PETICION_ALTA:
