@@ -6,7 +6,7 @@ Cliente :: Cliente ( char* archivo,char letra ) {
 }
 
 Cliente :: ~Cliente() {
-	this->cola->destruir ();
+	//this->cola->destruir ();
 	delete this->cola;
 }
 

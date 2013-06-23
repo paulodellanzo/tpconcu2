@@ -23,7 +23,7 @@ int main() {
 	// se registra el event handler declarado antes
 	SignalHandler :: getInstance()->registrarHandler ( SIGINT,&sigint_handler );
 
-	Cola<Peticion> cola((char *)"file.txt",'c');
+	//Cola<Peticion> cola((char *)"file.txt",'c');
 
 	Servidor* server = new Servidor((char*) "file.txt", 'a');
 	// mientras no se reciba la senial SIGINT, el servidor realiza su trabajo
