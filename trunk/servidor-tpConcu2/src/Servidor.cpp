@@ -6,6 +6,7 @@ Servidor :: Servidor ( char* archivo,char letra ) {
 }
 
 Servidor :: ~Servidor () {
+	this->cola->destruir();
 	delete this->cola;
 }
 
@@ -72,14 +73,12 @@ Peticion Servidor :: consultar(Peticion peticion, BaseDeDatos* base) {
 	strcpy(respuesta.nombre, "");
 	strcpy(respuesta.direccion, "");
 	strcpy(respuesta.telefono, "");
-	Registro reg = base->consulta(peticion.nombre, peticion.direccion, peticion.telefono);
+	Registro reg;
+	int estado = base->consulta( reg, peticion.nombre, peticion.direccion, peticion.telefono);
 	respuesta.clienteId = peticion.clienteId;
 	respuesta.mtype = peticion.clienteId;
 	respuesta.peticionId = peticion.peticionId;
-	respuesta.estado = 0;
-	if (reg.nombre == NULL){
-		respuesta.estado = -1;
-	}
+	respuesta.estado = estado;
 	strcpy(respuesta.nombre, reg.nombre);
 	strcpy(respuesta.direccion, reg.direccion);
 	strcpy(respuesta.telefono, reg.telefono);

@@ -15,7 +15,7 @@ int BaseDeDatos::addRegistro(char* nombre, char* direccion, char* telefono) {
 	return 0;
 }
 
-Registro BaseDeDatos::consulta(char* nombre, char* direccion, char* telefono) {
+int BaseDeDatos::consulta(Registro reg, char* nombre, char* direccion, char* telefono) {
 	list<Registro>::iterator it;
 	for (it = this->registros.begin(); it != this->registros.end(); it++) {
 		bool valido = true;
@@ -31,10 +31,15 @@ Registro BaseDeDatos::consulta(char* nombre, char* direccion, char* telefono) {
 			if(strcmp((*it).telefono, telefono) != 0) valido = false;
 		}
 
-		if(valido) return (*it);
+		if(valido) {
+			strcpy(reg.nombre, (*it).nombre);
+			strcpy(reg.direccion, (*it).direccion);
+			strcpy(reg.telefono, (*it).telefono);
+			return 0;
+		}
 	}
-	Registro reg;
-	return reg;
+	//Registro reg;
+	return -1;
 }
 
 void BaseDeDatos::mostrarRegistros() {

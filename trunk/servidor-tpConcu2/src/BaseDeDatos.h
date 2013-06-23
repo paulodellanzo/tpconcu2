@@ -14,7 +14,7 @@ public:
 	BaseDeDatos();
 	virtual ~BaseDeDatos();
 	int addRegistro(char* nombre, char* direccion, char* telefono);
-	Registro consulta(char* nombre, char* direccion, char* telefono);
+	int consulta(Registro reg, char* nombre, char* direccion, char* telefono);
 	void mostrarRegistros();
 
 private:
