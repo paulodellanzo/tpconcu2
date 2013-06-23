@@ -9,17 +9,19 @@
 #define DIRECCION_SIZE	120
 #define TELEFONO_SIZE	13
 
-//typedef struct Registro {
-//	char nombre[NOMBRE_SIZE];
-//	char direccion[DIRECCION_SIZE];
-//	char telefono[TELEFONO_SIZE];
-//} Registro;
+typedef struct Registro {
+	char nombre[NOMBRE_SIZE];
+	char direccion[DIRECCION_SIZE];
+	char telefono[TELEFONO_SIZE];
+} Registro;
 
-typedef struct PeticionConsulta {
+typedef struct Peticion {
 	long mtype;
 	int clienteId;
 	int peticionId;
 	char nombre[NOMBRE_SIZE];
+	char direccion[DIRECCION_SIZE];
+	char telefono[TELEFONO_SIZE];
 } PeticionConsulta;
 
 typedef struct RespuestaConsulta {
@@ -30,15 +32,6 @@ typedef struct RespuestaConsulta {
 	char direccion[DIRECCION_SIZE];
 	char telefono[TELEFONO_SIZE];
 } RespuestaConsulta;
-
-typedef struct PeticionAlta {
-	long mtype;
-	int clienteId;
-	int peticionId;
-	char nombre[NOMBRE_SIZE];
-	char direccion[DIRECCION_SIZE];
-	char telefono[TELEFONO_SIZE];
-} PeticionAlta;
 
 typedef struct RespuestaAlta {
 	long mtype;
