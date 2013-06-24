@@ -3,7 +3,7 @@
 // Author      : 
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Description : tpconcu2
 //============================================================================
 
 #include <iostream>
@@ -15,16 +15,13 @@
 
 using namespace std;
 
-int main() {
+int main1() {
 	cout << "Server Corriendo" << endl;
-	// event handler para la senial SIGINT (-2)
 	SIGINT_Handler sigint_handler;
 
-	// se registra el event handler declarado antes
 	SignalHandler :: getInstance()->registrarHandler ( SIGINT,&sigint_handler );
 
-	//Cola<Peticion> cola((char *)"file.txt",'c');
-
+	//Creamos el servidor con un archivo y letra para crear la cola de mensajes luego
 	Servidor* server = new Servidor((char*) "file.txt", 'a');
 	// mientras no se reciba la senial SIGINT, el servidor realiza su trabajo
 	while ( sigint_handler.getGracefulQuit() == 0 ) {
@@ -32,9 +29,7 @@ int main() {
 		server->recibirPeticion();
 		server->procesarPeticion();
 		server->getBase()->mostrarRegistros();
-
 	}
-
 	// se recibio la senial SIGINT, el proceso termina
 	SignalHandler :: destruir ();
 	delete server;

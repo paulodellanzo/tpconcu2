@@ -3,7 +3,7 @@
 // Author      : 
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Description : tpconcu2
 //============================================================================
 
 #include <iostream>
@@ -16,7 +16,7 @@
 
 using namespace std;
 
-int main1() {
+int main() {
 	cout << "Bienvenido seleccione la opcion para continuar" << endl;
 	cout << "1: Consulta de la Base de Datos" << endl;
 	cout << "2: Alta de la Base de Datos" << endl;
@@ -29,70 +29,17 @@ int main1() {
 		cout << "Ingrese opcion: " << endl;
 		cin >> opcion;
 		if (opcion == PETICION_ALTA){
-			Peticion peticion;
-			peticion.mtype = PETICION_ALTA;
-			peticion.clienteId = cliente->getPID();
-			peticion.peticionId = 1;
-
-			cout << "Ingresar datos para dar de alta" << endl;
-			cout << "Nombre:" << endl;
-			char nombre[NOMBRE_SIZE];
-			cin >> nombre ;
-			strcpy(peticion.nombre,nombre);
-
-			cout << "Direccion:" << endl;
-			char direccion[DIRECCION_SIZE];
-			cin >> direccion ;
-			strcpy(peticion.direccion,direccion);
-
-			cout << "Telefono:" << endl;
-			char telefono[TELEFONO_SIZE];
-			cin >> telefono ;
-			strcpy(peticion.telefono,telefono);
-
-			Peticion rta = cliente->enviarPeticion(peticion);
-			cout << "Respuesta:" << rta.estado << endl;
-
+			cliente->realizarAlta();
 		}
 		else if (opcion == PETICION_CONSULTA){
-			Peticion peticion;
-			peticion.mtype = PETICION_CONSULTA;
-			peticion.clienteId = cliente->getPID();
-			peticion.peticionId = 1;
-
-			cout << "Ingresar datos para consulta" << endl;
-			cout << "Nombre:" << endl;
-			char nombre[NOMBRE_SIZE];
-			cin >> nombre ;
-			strcpy(peticion.nombre,nombre);
-
-			cout << "Direccion:" << endl;
-			char direccion[DIRECCION_SIZE];
-			cin >> direccion ;
-			strcpy(peticion.direccion,direccion);
-
-			cout << "Telefono:" << endl;
-			char telefono[TELEFONO_SIZE];
-			cin >> telefono ;
-			strcpy(peticion.telefono,telefono);
-
-			Peticion rta = cliente->enviarPeticion(peticion);
-			if (rta.estado == 0){
-				cout << "Respuesta:" << endl << "Nombre: " << rta.nombre;
-				cout << " Direccion: " << rta.direccion << " Telefono: " << rta.telefono << endl;
-			}
-			else {
-				cout << "Empty set" << endl;
-			}
+			cliente->realizarConsulta();
 		}
 		else if (opcion == SALIR){
-			break;
+			cout << "Saliendo..." << endl;
 		}
 		else {
 			cout << "Opcion incorrecta vuelva a intentarlo" << endl;
 		}
-		//Cola<Peticion> cola((char *)"file.txt",'a');
-
 	}
 
 	/*Peticion peticion;
@@ -100,9 +47,7 @@ int main1() {
 	peticion.clienteId = cliente->getPID();
 	peticion.peticionId = 1;
 	Peticion rta = cliente->enviarPeticion(peticion);
-	cout << "Respuesta:" << rta.estado << endl;
 	*/
-
 	delete cliente;
 	return 0;
 }
