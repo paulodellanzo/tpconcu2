@@ -12,39 +12,32 @@ Servidor :: ~Servidor () {
 
 int Servidor :: recibirPeticion () {
 	this->peticionRecibida.clienteId = 0;
+	//Por default el servidor recibe un mensaje de salir, simulando la caida del cliente
+	this->peticionRecibida.mtype = SALIR;
+	//Ponemos tipo 0 para leer el siguiente mensaje en la cola
 	this->cola->leer ( 0 ,&(this->peticionRecibida) );
 	return 0;
 }
 
 int Servidor :: procesarPeticion () {
-	/*char txt_respuesta[TEXTO_SIZE];
-
-	strcpy ( txt_respuesta,"[Respuesta a ");
-	strcat ( txt_respuesta,this->peticionRecibida.texto );
-	strcat ( txt_respuesta,"]" );
-
-	this->respuesta.mtype = RESPUESTA;
-	this->respuesta.id = this->peticionRecibida.id;
-	strcpy ( this->respuesta.texto,txt_respuesta );
-	*/
-
-	//this->cola->leer(PETICION_CONSULTA,&peticion);
 
 	switch (this->peticionRecibida.mtype) {
 			case PETICION_CONSULTA:
 
-					Peticion respConsulta;
+					RespuestaConsulta respConsulta;
+					//Realizamos la consulta y escribimos la respuesta luego
 					this->respuesta = this->consultar(this->peticionRecibida, this->base);
 					this->responderPeticion();
 					break;
 			case PETICION_ALTA:
 
-					Peticion respAlta;
+					RespuestaAlta respAlta;
+					//Hacemos el alta del registro nuevo y enviamos la respuesta al cliente
 					this->respuesta = this->darDeAlta(this->peticionRecibida, this->base);
 					this->responderPeticion();
 					break;
 			case SALIR:
-					return 0;
+					break;
 			default:
 					break;
 	}
@@ -73,20 +66,24 @@ Peticion Servidor :: consultar(Peticion peticion, BaseDeDatos* base) {
 	strcpy(respuesta.nombre, "");
 	strcpy(respuesta.direccion, "");
 	strcpy(respuesta.telefono, "");
-	Registro reg;
+	Registro* reg = new Registro;
+	//Se pide la consulta a la base de datos que tiene el servidor
 	int estado = base->consulta( reg, peticion.nombre, peticion.direccion, peticion.telefono);
 	respuesta.clienteId = peticion.clienteId;
 	respuesta.mtype = peticion.clienteId;
 	respuesta.peticionId = peticion.peticionId;
 	respuesta.estado = estado;
-	strcpy(respuesta.nombre, reg.nombre);
-	strcpy(respuesta.direccion, reg.direccion);
-	strcpy(respuesta.telefono, reg.telefono);
+	//Se arma la respuesta en funcion del registro obtenido
+	strcpy(respuesta.nombre, reg->nombre);
+	strcpy(respuesta.direccion, reg->direccion);
+	strcpy(respuesta.telefono, reg->telefono);
 	return respuesta;
 }
 
 Peticion Servidor :: darDeAlta(Peticion peticion, BaseDeDatos* base) {
 	Peticion respuesta;
+	//Agregamos a la base de datos el registro nuevo que ingreso el cliente y devuelve un
+	//estado que es 0 OK, -1 ERROR
 	int estado = base->addRegistro(peticion.nombre, peticion.direccion, peticion.telefono);
 	respuesta.clienteId = peticion.clienteId;
 	respuesta.mtype = peticion.clienteId;

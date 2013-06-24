@@ -2,10 +2,13 @@
 #define CLIENTE_H_
 
 #include <string.h>
+#include <iostream>
 
 #include "Mensajes.h"
 #include "Cola.h"
 #include <unistd.h>
+
+using namespace std;
 
 class Cliente {
 
@@ -19,6 +22,8 @@ class Cliente {
 		virtual ~Cliente();
 		Peticion enviarPeticion ( Peticion peticion);
 		int getPID();
+		void realizarConsulta();
+		void realizarAlta();
 };
 
 #endif /* CLIENTE_H_ */
