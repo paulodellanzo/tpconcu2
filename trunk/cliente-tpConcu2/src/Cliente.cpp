@@ -29,19 +29,13 @@ void Cliente :: realizarAlta() {
 
 	cout << "Ingresar datos para dar de alta" << endl;
 	cout << "Nombre:" << endl;
-	char nombre[NOMBRE_SIZE];
-	cin >> nombre ;
-	strcpy(peticion.nombre,nombre);
+	cin.getline(peticion.nombre,NOMBRE_SIZE);
 
 	cout << "Direccion:" << endl;
-	char direccion[DIRECCION_SIZE];
-	cin >> direccion ;
-	strcpy(peticion.direccion,direccion);
+	cin.getline(peticion.direccion,DIRECCION_SIZE);
 
 	cout << "Telefono:" << endl;
-	char telefono[TELEFONO_SIZE];
-	cin >> telefono ;
-	strcpy(peticion.telefono,telefono);
+	cin.getline(peticion.telefono,DIRECCION_SIZE);
 
 	Peticion rta = this->enviarPeticion(peticion);
 	if (rta.estado == 0){
@@ -61,19 +55,15 @@ void Cliente :: realizarConsulta(){
 
 	cout << "Ingresar datos para consulta" << endl;
 	cout << "Nombre:" << endl;
-	char nombre[NOMBRE_SIZE];
-	cin >> nombre ;
-	strcpy(peticion.nombre,nombre);
+	cin.getline(peticion.nombre,NOMBRE_SIZE);
 
 	cout << "Direccion:" << endl;
-	char direccion[DIRECCION_SIZE];
-	cin >> direccion ;
-	strcpy(peticion.direccion,direccion);
+	cin.getline(peticion.direccion,DIRECCION_SIZE);
 
 	cout << "Telefono:" << endl;
-	char telefono[TELEFONO_SIZE];
-	cin >> telefono ;
-	strcpy(peticion.telefono,telefono);
+	cin.getline(peticion.telefono,DIRECCION_SIZE);
+
+	cout << "Nombre " << peticion.nombre << " Direccion " << peticion.direccion << " Telefono " << peticion.telefono << endl;
 
 	Peticion rta = this->enviarPeticion(peticion);
 	if (rta.estado == 0){
