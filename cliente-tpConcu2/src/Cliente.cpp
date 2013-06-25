@@ -63,8 +63,6 @@ void Cliente :: realizarConsulta(){
 	cout << "Telefono:" << endl;
 	cin.getline(peticion.telefono,DIRECCION_SIZE);
 
-	cout << "Nombre " << peticion.nombre << " Direccion " << peticion.direccion << " Telefono " << peticion.telefono << endl;
-
 	Peticion rta = this->enviarPeticion(peticion);
 	if (rta.estado == 0){
 		cout << "Respuesta:" << endl << "Nombre: " << rta.nombre;
