@@ -11,11 +11,26 @@ BaseDeDatos::BaseDeDatos() {
 			char *ptr;
 			Registro reg;
 			ptr = strtok(linea,"\t");
-			strcpy(reg.nombre, ptr);
+			if (ptr != NULL and strlen(ptr) != 0){
+				strcpy(reg.nombre, ptr);
+			}
+			else {
+				strcpy(reg.nombre, "");
+			}
 			ptr = strtok(NULL, "\t");
-			strcpy(reg.direccion, ptr);
+			if (ptr != NULL and strlen(ptr) != 0){
+				strcpy(reg.direccion, ptr);
+			}
+			else {
+				strcpy(reg.direccion, "");
+			}
 			ptr = strtok(NULL, "\t");
-			strcpy(reg.telefono, ptr);
+			if (ptr != NULL and strlen(ptr) != 0){
+				strcpy(reg.telefono, ptr);
+			}
+			else {
+				strcpy(reg.telefono, "");
+			}
 			this->registros.push_front(reg);
 		}
 		fclose(archivo);
@@ -35,6 +50,7 @@ int BaseDeDatos::addRegistro(char* nombre, char* direccion, char* telefono) {
 	fputs(registro.direccion,archivo);
 	fputs(separador,archivo);
 	fputs(registro.telefono,archivo);
+	fputs(separador,archivo);
 	const char * fin = "\n";
 	fputs(fin,archivo);
 	fclose(archivo);
@@ -45,15 +61,15 @@ int BaseDeDatos::consulta(Registro* reg, char* nombre, char* direccion, char* te
 	list<Registro>::iterator it;
 	for (it = this->registros.begin(); it != this->registros.end(); it++) {
 		bool valido = true;
-		if(nombre != NULL) {
+		if(nombre != NULL and strlen(nombre) != 0) {
 			if(strcmp((*it).nombre, nombre) != 0) valido = false;
 		}
 
-		if(direccion != NULL) {
+		if(direccion != NULL and strlen(direccion) != 0) {
 			if(strcmp((*it).direccion, direccion) != 0) valido = false;
 		}
 
-		if(telefono != NULL) {
+		if(telefono != NULL and strlen(telefono) != 0) {
 			if(strcmp((*it).telefono, telefono) != 0) valido = false;
 		}
 

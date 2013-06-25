@@ -24,7 +24,7 @@ int main() {
 	cout << "4: Salir" << endl;
 
 	int opcion = 2;
-	Cliente* cliente = new Cliente((char*)"/home/damian/file.txt",'a');
+	Cliente* cliente = new Cliente((char*)"file.txt",'a');
 
 	while (opcion != SALIR){
 		cout << "Ingrese opcion: " << endl;
