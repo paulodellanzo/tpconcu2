@@ -15,7 +15,7 @@
 
 using namespace std;
 
-int main1() {
+int main() {
 	cout << "Server Corriendo" << endl;
 	SIGINT_Handler sigint_handler;
 
