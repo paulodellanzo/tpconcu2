@@ -29,7 +29,7 @@ int main() {
 	while (opcion != SALIR){
 		cout << "Ingrese opcion: " << endl;
 		char opcionChar;
-		cin.getline(&opcionChar,NOMBRE_SIZE);
+		cin.getline(&opcionChar,10);
 		opcion = atoi(&opcionChar);
 		if (opcion == PETICION_ALTA){
 			cliente->realizarAlta();
@@ -42,6 +42,7 @@ int main() {
 		}
 		else {
 			cout << "Opcion incorrecta vuelva a intentarlo" << endl;
+			cin.ignore();
 		}
 	}
 
